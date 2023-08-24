@@ -7,7 +7,7 @@ import java.util.Set;
  */
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-CityMethodsImpl cityMethods = new CityMethodsImpl();
-cityMethods.groupByRegion(cityMethods.readFile());
+CityMethodsImpl cityMethods = new CityMethodsImpl("city_ru.csv");
+
     }
 }
