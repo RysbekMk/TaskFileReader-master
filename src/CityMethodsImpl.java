@@ -11,16 +11,19 @@ import java.util.*;
 //  После того как ты закончил предыдущий метод можешь приступить к следуещему.
 //  Вся суть printAllCities() заключается в том, что надо вывести все города на консоль.
 public class CityMethodsImpl implements CityMethods {
+    private final String fileName;
 
+    public CityMethodsImpl(String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public List<City> readFile() throws FileNotFoundException {
-        FileReader reader = new FileReader("city_ru.csv");
+        FileReader reader = new FileReader(fileName);
         Scanner scanner = new Scanner(reader);
         List<City> cities = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String words = scanner.nextLine();
-
             List<String> cityList = List.of(words.split(";"));
             City city = new City();
             city.setID(Integer.parseInt(cityList.get(0)));
@@ -72,8 +75,9 @@ public class CityMethodsImpl implements CityMethods {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+
         for (City city : cities) {
-            if (city.getName().equals(name)) {
+            if (city.getName().equalsIgnoreCase(name)) {
                 System.out.println(city);
             }
         }
